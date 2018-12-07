@@ -12,4 +12,7 @@ shotty uses configuration file created by the AWS ClI that is
 'aws configure --profile shotty'
 
 ## Executing
- pipenv run python shotty/shotty.py
+"pipenv run python shotty/shotty.py <command> <--project=PROJECT_NAME>"
+
+*command* is list, start, stop.
+*Project* is optional, as it s only used for filtering using tags. If you don't use projects, it will apply on all the instances owned by the user.
