@@ -73,17 +73,27 @@ def instances():
 help = "Create Snapshots for all volumes")
 @click.option('--project', default = None,
 help = "Only instances for project (tag project:<name>)")
-def create_snapshots(project):
+def create_snapshot(project):
     """Create snapshots for EC2 Instances"""
 
     instances = filters_instances(project)
 
     for i in instances:
-        i.stop()
-        for v in i.volumes.all():
-            print("Creating snapshorts of {0}".format(v.id))
-            v.create_snapshots(Description="created by snapshotanalyzer-30000")
 
+        print("Stopping {0}....".format(i.id))
+        i.stop()
+        i.wait_until_stopped()
+
+        for v in i.volumes.all():
+            print("   Creating snapshots of {0}".format(v.id))
+            v.create_snapshot(Description = "created by snapshotanalyzer 30000")
+
+        print("Starting {0}....".format(i.id))
+
+        i.start()
+        i.wait_until_running()
+
+    print("Job Completed")
     return
 
 @instances.command('list')
