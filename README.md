@@ -12,8 +12,8 @@ shotty uses configuration file created by the AWS ClI that is
 'aws configure --profile shotty'
 
 ## Executing
-"pipenv run python shotty/shotty.py <command> <subcommand> <--project=PROJECT_NAME>"
-
+"pipenv run python shotty/shotty.py <command> <sub-command> <--project=PROJECT_NAME>"
+eg: pipenv run python shotty/shotty.py instances snapshots list
 *command* is instances, volumes, snapshots.
-*subcommand* -depends on command
+*subcommand* depends on command
 *Project* is optional, as it s only used for filtering using tags. If you don't use projects, it will apply on all the instances owned by the user.
