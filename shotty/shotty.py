@@ -50,7 +50,7 @@ def volumes():
 @volumes.command('list')
 @click.option('--project', default = None,
 help = "Only Volumes for project (tag project:<name>)")
-def list_volumes(project):
+def list_snapshot(project):
     "List EC2 volumes"
 
     instances = filters_instances(project)
